@@ -6,6 +6,7 @@ Template.messages.helpers
   messages: Messages.find()
 
 Template.registerHelper "usernameFromId", (userId) ->
+  debugger
   user = Meteor.users.findOne(_id: userId)
   if (typeof user == 'undefined')
     return "Anonymous"

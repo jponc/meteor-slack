@@ -6,14 +6,12 @@ Meteor.startup( ->
     channel: 'general'
   )
 
-  Messages.remove({})
-
   if Messages.find({}).count() == 0
     _(5).times( (n) ->
       Factory.create('message')
     )
 
-  Channels.remove({});
-  Channels.insert(name: 'general')
-  Channels.insert(name: 'random')
+  if Channels.find({}).count() == 0
+    Channels.insert(name: 'general')
+    Channels.insert(name: 'random')
 )
