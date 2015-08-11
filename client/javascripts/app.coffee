@@ -6,7 +6,6 @@ Template.messages.helpers
   messages: Messages.find()
 
 Template.registerHelper "usernameFromId", (userId) ->
-  debugger
   user = Meteor.users.findOne(_id: userId)
   if (typeof user == 'undefined')
     return "Anonymous"
@@ -32,4 +31,13 @@ Template.messages.onCreated( ->
   @autorun( =>
     @subscribe 'messages', Session.get('channel')
   )
+)
+
+Tracker.autorun( ->
+  name =
+    if Meteor.user()
+      Meteor.user().profile.name
+    else
+      "Anonymous"
+  $('.user-menu_username').text(name)
 )
