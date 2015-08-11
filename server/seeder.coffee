@@ -1,7 +1,9 @@
 Meteor.startup( ->
   Factory.define('message', Messages,
     text: -> Fake.sentence()
-    timestamp: -> Date.now()
+    user: Meteor.users.findOne()._id
+    timestamp: Date.now()
+    channel: 'general'
   )
 
   Messages.remove({})
@@ -10,4 +12,8 @@ Meteor.startup( ->
     _(5).times( (n) ->
       Factory.create('message')
     )
+
+  Channels.remove({});
+  Channels.insert(name: 'general')
+  Channels.insert(name: 'random')
 )

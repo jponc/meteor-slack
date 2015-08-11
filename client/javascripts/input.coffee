@@ -4,7 +4,7 @@ Template.footer.events 'keypress input': (e) ->
     charCode = if typeof e.which == 'number' then e.which else e.keyCode
     if charCode == 13
       e.stopPropagation()
-      Meteor.call 'newMessage', text: $('.input-box_text').val()
+      Meteor.call 'newMessage', text: $('.input-box_text').val(), channel: Session.get('channel')
       $('.input-box_text').val ''
       return false
   return
