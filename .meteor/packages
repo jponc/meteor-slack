@@ -8,3 +8,6 @@ meteor-platform
 autopublish
 insecure
 coffeescript
+underscore
+anti:fake
+dburles:factory
